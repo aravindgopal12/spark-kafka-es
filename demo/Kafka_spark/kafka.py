@@ -21,7 +21,3 @@ lines.pprint()
 ssc.start()             # Start the computation
 ssc.awaitTermination()
 
-spark = SparkSession \
-    .builder \
-    .appName("StructuredNetworkWordCount") \
-    .getOrCreate()
