@@ -1,0 +1,4 @@
+v1
+{"taskId":0,"execTimeMillis":1560246240219,"resource":"spark-test/doc-typess","records":3}
+{"taskId":1,"execTimeMillis":1560246240335,"resource":"spark-test/doc-typess","records":3}
+{"taskId":2,"execTimeMillis":1560246240345,"resource":"spark-test/doc-typess","records":3}

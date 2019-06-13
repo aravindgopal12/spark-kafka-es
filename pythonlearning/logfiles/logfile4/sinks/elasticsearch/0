@@ -1,0 +1,4 @@
+v1
+{"taskId":0,"execTimeMillis":1560248144623,"resource":"streaming-twitter/doc-typess","records":52}
+{"taskId":1,"execTimeMillis":1560248144810,"resource":"streaming-twitter/doc-typess","records":52}
+{"taskId":2,"execTimeMillis":1560248144785,"resource":"streaming-twitter/doc-typess","records":52}
