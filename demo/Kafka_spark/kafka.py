@@ -9,6 +9,8 @@ findspark.init('D:\Rcg\spark\spark-2.4.3-bin-hadoop2.7\spark-2.4.3-bin-hadoop2.7
 
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming-kafka-0-8-assembly_2.11:2.4.3 pyspark-shell'
 
+
+
 # Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[2]", "NetworkWordCount")
 ssc = StreamingContext(sc, 1)
@@ -19,3 +21,7 @@ lines.pprint()
 ssc.start()             # Start the computation
 ssc.awaitTermination()
 
+spark = SparkSession \
+    .builder \
+    .appName("StructuredNetworkWordCount") \
+    .getOrCreate()

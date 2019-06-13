@@ -1,9 +1,15 @@
-from pyspark import SparkContext
+from pyspark import SparkContext,RDD
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
+from kafka import KafkaProducer
 import os
 import findspark
 from elasticsearch import Elasticsearch
+
+import streamz
+import json
+
+
 
 es = Elasticsearch(hosts='ec2-54-225-43-20.compute-1.amazonaws.com:9200')
 
@@ -17,27 +23,7 @@ ssc = StreamingContext(sc, 1)
 kafkastream = KafkaUtils.createStream(ssc, 'ec2-54-225-43-20.compute-1.amazonaws.com:2181', 'mygroup', {'talend_topics': 1})
 lines = kafkastream.map(lambda x: x[1])
 
-# Print the first ten elements of each RDD generated in this DStream to the console
-lines.pprint()
-#lines.foreachRDD(lambda x: x[1])
-es.index(index="spark_kafka_talendsss",
-         doc_type="test-type",
-         body={"marketplace": str(),
-               "customer_id": str(),
-               "review_id": str(),
-               "product_id": str(),
-               "product_parent": str(),
-               "product_title": str(),
-               "product_sub_category": str(),
-               "product_category": str(),
-               "star_rating": str(),
-               "helpful_votes": str(),
-               "total_votes": str(),
-               "vine": str(),
-               "verified_purchase": str(),
-               "review_headline": str(),
-               "review_body": str(),
-               "review_date": str()})
+
 
 ssc.start()
 ssc.awaitTermination()

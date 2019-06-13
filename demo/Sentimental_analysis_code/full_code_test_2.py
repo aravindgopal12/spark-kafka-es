@@ -17,7 +17,7 @@ sc = SparkContext("local[2]", "NetworkWordCount")
 ssc = StreamingContext(sc, 1)
 kafkastream = KafkaUtils.createStream(ssc, 'ec2-54-225-43-20.compute-1.amazonaws.com:2181', 'mygroup', {'talend_topics': 1})
 lines = kafkastream.map(lambda x: x[1])
-s = pd.
+#s = pd.
 rddQueue = []
 for datanum in lines:
     rddQueue += [ssc.sparkContext.parallelize(datanum)]
