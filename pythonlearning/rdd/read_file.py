@@ -10,7 +10,11 @@ data = ut.map(lambda line: line.split("\t")) # assuming the file contains a head
 print(type(data))
 print(data.count())
 
+print(data.take(5))
+
+
 mydata = data.collect()
+
 
 for x in mydata:
     print(x)

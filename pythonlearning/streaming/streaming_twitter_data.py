@@ -36,6 +36,7 @@ csvDF.printSchema()
 print(type(csvDF))
 
 
+
 query2 = csvDF\
           .writeStream\
           .trigger(processingTime='10 seconds')\
@@ -46,7 +47,7 @@ query2 = csvDF\
 es_push = csvDF.writeStream \
     .outputMode("append")\
     .format("es")\
-    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile8")\
+    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile7")\
     .start("streaming-twitter/doc-typess")
 
 

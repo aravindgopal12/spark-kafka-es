@@ -17,7 +17,11 @@ ssc = StreamingContext(sc, 1)
 kafkastream = KafkaUtils.createStream(ssc, 'ec2-54-225-43-20.compute-1.amazonaws.com:2181', 'mygroup', {'talend_topics': 1})
 lines = kafkastream.map(lambda x: x[1])
 # Print the first ten elements of each RDD generated in this DStream to the console
+print(type(lines))
 lines.pprint()
+
+
+
 ssc.start()             # Start the computation
 ssc.awaitTermination()
 

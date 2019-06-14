@@ -23,10 +23,13 @@ dataobj = pd.read_excel("D:/Rcg/Amazon_demo_data/Sentimental_Analysis_Data_Revis
 
 print(dataobj)
 
-dataobj.columns
 print(type(dataobj))
+
+
 dataobj.columns.str.match('Unnamed')
 print(dataobj.columns.str.match('review_body'))
+
+
 #
 # data = dataobj.loc[:, ~dataobj.columns.str.contains('^Unnamed')]
 #

@@ -12,7 +12,16 @@ import re
 spark = SparkSession \
     .builder \
     .appName("StructuredNetworkWordCount") \
+    .config("es.nodes","ec2-54-225-43-20.compute-1.amazonaws.com")\
+    .config("es.port","9200")\
+    .config("es.index.auto.create", "true")\
+    .config("es.nodes.wan.only", "true") \
+    .config("es.net.http.auth.user", "elastic") \
+    .config("es.net.http.auth.pass", "changeme")\
     .getOrCreate()
+
+
+
 
 #spark.conf.set("spark.sql.execution.arrow.enabled", "true")
 
@@ -45,13 +54,20 @@ data = spark \
 data.printSchema()
 print(type(data))
 
-
 #
 query2 = data\
           .writeStream\
           .trigger(processingTime='10 seconds')\
           .format("console")\
           .start()
+
+
+
+es_push = data.writeStream \
+    .outputMode("append")\
+    .format("es")\
+    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile6")\
+    .start("streaming-twitter/doc-typess")
 
 
 
