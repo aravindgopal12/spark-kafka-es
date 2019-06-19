@@ -23,7 +23,7 @@ spark = SparkSession \
 
 
 
-#spark.conf.set("spark.sql.execution.arrow.enabled", "true")
+# spark.conf.set("spark.sql.execution.arrow.enabled", "true")
 
 userSchema = StructType()\
     .add("marketplace", "string")\
@@ -54,21 +54,28 @@ data = spark \
 data.printSchema()
 print(type(data))
 
-#
+ds = data.selectExpr("CAST(value AS STRING)")
 query2 = data\
           .writeStream\
           .trigger(processingTime='10 seconds')\
-          .format("console")\
+          .queryName("ass")\
+          .format("memory")\
           .start()
 
 
 
-es_push = data.writeStream \
-    .outputMode("append")\
-    .format("es")\
-    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile6")\
-    .start("streaming-twitter/doc-typess")
 
+
+#
+# es_push = data.writeStream \
+#     .outputMode("append")\
+#     .format("es")\
+#     .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile6")\
+#     .start("streaming-twitter/doc-typess")
+
+
+raw = spark.sql("select * from ass")
+raw.show()
 
 
 query2.awaitTermination()

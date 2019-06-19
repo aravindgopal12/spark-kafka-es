@@ -47,7 +47,7 @@ query2 = csvDF\
 es_push = csvDF.writeStream \
     .outputMode("append")\
     .format("es")\
-    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile7")\
+    .option("checkpointLocation", "D:/python_programs/pythonlearning/logfiles/logfile6")\
     .start("streaming-twitter/doc-typess")
 
 

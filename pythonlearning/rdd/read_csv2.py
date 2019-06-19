@@ -27,13 +27,5 @@ import pandas as pd
 import pprint
 
 sc = SparkContext('local','example')  # if using locally
-sql_sc = SQLContext(sc)
-
-
-ut = sc.textFile("D:/Rcg/Amazon_demo_data/amazon_reviews_us_Electronics_data.csv")
-ut = ut.map(lambda line: line.split(','))
-# print(type(ut))To know which type:Rdd or Dataframe or Streaming
-# print(ut.count())//Count the data(Number of rows)
-# print(ut.first())
-for x in ut:
-     print(x)      #Print the csv data exactly same as in the file(otherwise full data will be printed in a same line)
+data = [(1, ""),(1, "a"),(2, "bcdf")]
+sc.parallelize(data).saveAsNewAPIHadoopFile("path","org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat","org.apache.hadoop.io.IntWritable","org.apache.hadoop.io.Text")
